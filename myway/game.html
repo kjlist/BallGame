@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>game 1</title>
+    <style media="screen">
+        canvas {
+            border: 1px black solid;
+        }
+    </style>
+    <script src='utils.js'></script>
+    <script src='paddle.js'></script>
+    <script src='gua_game.js'></script>
+</head>
+<body>
+<canvas id="id-canvas" width="400" height="300"></canvas>
+<script>
+    const e = sel => document.querySelector(sel)
+    const log = console.log.bind(console)
+    var _main = function () {
+        var g = GuaGame.new()
+        var paddle = Paddle.new(g)
+        g.addElement(paddle)
+        // var actions = {
+        // }
+        // window.addEventListener('keydown',function (event) {
+        //     log(event.key)
+        //     var k = event.key
+        //     // if (k == 'a'){
+        //     //     paddle.moveLeft()
+        //     // }
+        //     // if (k == 'd'){
+        //     //     paddle.moveRight()
+        //     // }
+        //
+        //     // actions[key]&&actions[key](event)
+        //     //用if语句根据条件执行方法的,可以考虑改用actions[key]()映射
+        // })
+        g.registerAction('a', function () {
+            paddle.moveLeft()
+        })
+        g.registerAction('d', function () {
+            paddle.moveRight()
+        })
+    }
+    _main()
+</script>
+</body>
+</html>
