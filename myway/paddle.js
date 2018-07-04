@@ -18,11 +18,20 @@ class Paddle{
         }
     }
     moveRight(){
-        log(this.img)
         //目前获取不到width和height
         if (this.x < 400 - this.width){
             this.x += this.speed
         }
+    }
+    collide(ball) {
+        //目前获取不到width和height,有点问题
+        if (ball.y + ball.image.height > this.y) {
+            if (ball.x > this.x && ball.x < this.x + this.img.width) {
+                log('相撞')
+                return true
+            }
+        }
+        return false
     }
     update(){
         // this.moveRight()
