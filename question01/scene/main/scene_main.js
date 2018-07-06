@@ -4,16 +4,14 @@ class SceneMain extends BaseScene {
     }
 
     setup() {
+        log('SceneMain初始化0',this.game.gameImage)
         this.paddle = Paddle.new(this.game)
         this.addElement(this.paddle)
         this.ball = Ball.new(this.game)
         this.addElement(this.ball)
         super.setup()
-        this.loadLevel(1)
     }
-    loadLevel(rank){
 
-    }
     setupEvent() {
         super.setupEvent()
         var self = this

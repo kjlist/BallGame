@@ -73,38 +73,20 @@
 
 class GuaGame {
     //作为控制类
-    constructor(images,runCallback) {
+    constructor(gameImage) {
+        this.gameImage = gameImage
+        log('初始化GuaGame1',this.gameImage)
         this.canvas = e('#id-canvas')
         this.context = this.canvas.getContext('2d')
         this.width = 400
         this.height = 300
         this.scene = null
-        this.images = {}
         this.setup()
-
-        var self = this
-        var loads = []
-        var names = Object.keys(images)
-        for (let i = 0; i < names.length; i++) {
-            let name = names[i]
-            let path = images[names[i]]
-            let img = new Image()
-            img.src = path
-            img.onload = function () {
-                self.images[name] = img
-                loads.push(1)
-                if (loads.length == names.length){
-                    //开始
-                    //初始化最开始的场景
-                    self.setMainLoop(runCallback)
-                }
-            }
-        }
-        // 重中之重,这种循环中又有函数的,使用let
     }
 
     setup() {
         this.setInput()
+        this.setMainLoop()
     }
 
     setInput() {
@@ -137,13 +119,25 @@ class GuaGame {
 
 
      getImgFromName(name){
-        return this.images[name]
+         log('getImgFromName',this.gameImage)
+        return this.gameImage[name]
     }
-
-    setMainLoop(runCallback) {
-        runCallback(this)
+    setMainLoop() {
+        // setInterval(function () {
+        //     // update
+        //     self.updateInput()
+        //     self.update()
+        //     // clear
+        //     self.context.clearRect(0, 0, self.width, self.height)
+        //     // draw
+        //     self.draw()
+        // }, 1000 / 30)
+        //用setTimeout代替setInterval
         var self = this
         setTimeout(function () {
+            var s = SceneMain.new(self)
+            self.replaceScene(s)
+            //最好剥离出gua_game,做成一个runCallback
             self.runloop()
         },1000 / window.fps)
     }
@@ -170,12 +164,10 @@ class GuaGame {
     }
 
     update() {
-        // log("开始update")
         this.scene.update()
     }
 
     draw() {
-        // log("开始draw")
         this.scene.draw()
     }
 

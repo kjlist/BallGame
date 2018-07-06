@@ -1,3 +1,4 @@
+<!--question01有点问题,paddle无法获取this.game.gameImage-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,24 +28,27 @@
         var namePath = {
             paddle:'img/paddle.png',
             ball:'img/ball.png',
-            block:'img/block.png'
         }
-        var g = GuaGame.new(namePath,function (g) {
-            var s = SceneMain.new(g)
-            g.replaceScene(s)
-            // log('回调0',g)
-            // log('回调1',g.getImgFromName)
-            // // setInterval(function () {
-            // //     log('回调-lll',g.width)
-            // //     log('回调-lll',g.getImgFromName)
-            // // },100)
-            // var s = SceneMain.new(g)
-            // log('回调2',g)
-            // // g.replaceScene(s)
 
-            //有一个问题,如果不注释掉g.replaceScene(s),回调0中打的log也是SceneMain
-        })
-
+        // 可以吧gameImage放到Guagame里面,方便管理,外面留一个namePath作为可配置的
+        var gameImage = {}
+        var loads = []
+        var actions = Object.keys(namePath)
+        for (let i = 0; i < actions.length; i++) {
+            let img = new Image()
+            img.src = namePath[actions[i]]
+            img.onload = function () {
+                log('加载完毕',i,actions[i],img)
+                gameImage[actions[i]] = img
+                loads.push(1)
+                if (loads.length == 2){
+                    //开始
+                    log('全部加载完成',gameImage)
+                    var g = GuaGame.new(gameImage)
+                    //初始化最开始的场景
+                }
+            }
+        }
     }
     _main()
 </script>
