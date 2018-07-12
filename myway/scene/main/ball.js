@@ -1,7 +1,7 @@
 class Ball {
     constructor(game) {
         this.game = game
-        this.img = imgFromPath('img/ball.png')
+        this.img = this.game.getImgFromName("ball")
         this.width = this.img.width
         this.height = this.img.height
         this.x = 100

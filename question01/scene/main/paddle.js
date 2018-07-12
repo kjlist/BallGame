@@ -1,6 +1,6 @@
 class Paddle{
     constructor(game){
-        this.game = game
+        this.game = game[0]
         // this.img = imgFromPath('img/paddle.png')
         log('Paddle获取图片00',this.game)
         log('Paddle获取图片11',game.getImgFromName)
@@ -12,14 +12,14 @@ class Paddle{
         this.speed = 5
     }
     //问题出在这里,这样的话不能使用game的方法,但是可以使用game的属性
-    // static new(...args){
-    //     return new this(args)
-    // }
+    static new(...args){
+        return new this(args)
+    }
     //剩余参数,只有函数的最后一个参数才能是剩余参数
     //改成这样就没问题了
-    static new(game){
-        return new this(game)
-    }
+    // static new(game){
+    //     return new this(game)
+    // }
 
     moveLeft(){
         if (this.x > 0){

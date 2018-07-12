@@ -9,44 +9,21 @@
         }
     </style>
     <script src='utils.js'></script>
+
     <script src='gua_game.js'></script>
+    <script src='scene/guagame/gua_image.js'></script>
+    <script src='scene/guagame/gua_partical_system.js'></script>
     <script src='scene/base_scene.js'></script>
 
     <script src='scene/main/scene_main.js'></script>
     <script src='scene/main/paddle.js'></script>
     <script src='scene/main/ball.js'></script>
+    <script src='scene/main/block.js'></script>
 
     <script src='scene/title/scene_title.js'></script>
 </head>
 <body>
 <canvas id="id-canvas" width="400" height="300"></canvas>
-<script>
-    var _main = function () {
-        window.fps = 30
-        //完成先加载图片,然后开启游戏循环功能
-        var namePath = {
-            paddle:'img/paddle.png',
-            ball:'img/ball.png',
-            block:'img/block.png'
-        }
-        var g = GuaGame.new(namePath,function (g) {
-            var s = SceneMain.new(g)
-            g.replaceScene(s)
-            // log('回调0',g)
-            // log('回调1',g.getImgFromName)
-            // // setInterval(function () {
-            // //     log('回调-lll',g.width)
-            // //     log('回调-lll',g.getImgFromName)
-            // // },100)
-            // var s = SceneMain.new(g)
-            // log('回调2',g)
-            // // g.replaceScene(s)
-
-            //有一个问题,如果不注释掉g.replaceScene(s),回调0中打的log也是SceneMain
-        })
-
-    }
-    _main()
-</script>
+<script src='main.js'></script>
 </body>
 </html>

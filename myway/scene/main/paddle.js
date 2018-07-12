@@ -2,9 +2,9 @@ class Paddle{
     constructor(game){
         this.game = game
         // this.img = imgFromPath('img/paddle.png')
-        this.img = game.getImgFromName("paddle")
-        this.width = this.img.width
-        this.height = this.img.height
+        this.texture = game.getImgFromName("paddle")
+        this.width = this.texture.width
+        this.height = this.texture.height
         this.x =100
         this.y =200
         this.speed = 5
@@ -42,6 +42,6 @@ class Paddle{
         //打印不出来this.game.drawImage???暂时不调用每个item的draw方法,所以此时此刻也不需要game
         // log(this.game.elements)
         // log(this.game.drawImage(this))
-        // this.game.drawImage(this)
+        this.game.drawImage(this)
     }
 }
